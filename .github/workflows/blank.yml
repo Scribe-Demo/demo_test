@@ -36,6 +36,7 @@ jobs:
            scribe-enable: true
            scribe-client-id: ${{ secrets.SCRIBE_PROD_DEMO_CLIENT_ID }}
            scribe-client-secret: ${{ secrets.SCRIBE_PROD_DEMO_CLIENT_SECRET }}
+           product-key: "test 1"
 
 
       # Build and push your image - this example skips this step as we're using the published mongo express.
@@ -51,6 +52,7 @@ jobs:
           scribe-enable: true
           scribe-client-id: ${{ secrets.SCRIBE_PROD_DEMO_CLIENT_ID }}
           scribe-client-secret: ${{ secrets.SCRIBE_PROD_DEMO_CLIENT_SECRET }}
+          product-key: "test 1"
 
       - uses: actions/upload-artifact@v2
         with:
