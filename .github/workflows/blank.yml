@@ -27,6 +27,7 @@ jobs:
         with:
            type: dir
            target: 'mongo-express-scm'
+           format: attest
            scribe-enable: true
            scribe-client-id: ${{ secrets.SCRIBE_PROD_DEMO_CLIENT_ID }}
            scribe-client-secret: ${{ secrets.SCRIBE_PROD_DEMO_CLIENT_SECRET }}
@@ -39,8 +40,9 @@ jobs:
         uses: scribe-security/action-bom@master
         with:
           type: docker # To be included only if you want to to use docker daemon to access the image (for example, creating your docker image locally)
-          target: mongo-express:latest
-          format: json
+          target: mongo-express:0.54
+#           format: json
+          format: attest
           scribe-enable: true
           scribe-client-id: ${{ secrets.SCRIBE_PROD_DEMO_CLIENT_ID }}
           scribe-client-secret: ${{ secrets.SCRIBE_PROD_DEMO_CLIENT_SECRET }}
@@ -56,8 +58,9 @@ jobs:
         id: valint_slsa_statement
         uses: scribe-security/action-bom@master
         with:
-          target: mongo-express:latest
-          format: statement-slsa
+          target: mongo-express:0.54
+#           format: statement-slsa
+          format: attest-slsa
           force: true
 
       - uses: actions/upload-artifact@v2
