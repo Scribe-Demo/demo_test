@@ -32,11 +32,12 @@ jobs:
         with:
            type: dir
            target: 'mongo-express-scm'
+           format: statement
 #            format: attest
            scribe-enable: true
            scribe-client-id: ${{ secrets.SCRIBE_PROD_DEMO_CLIENT_ID }}
            scribe-client-secret: ${{ secrets.SCRIBE_PROD_DEMO_CLIENT_SECRET }}
-           product-key: "attest test1"
+           product-key: "statement"
 
 
       # Build and push your image - this example skips this step as we're using the published mongo express.
@@ -47,12 +48,12 @@ jobs:
         with:
           type: docker # To be included only if you want to to use docker daemon to access the image (for example, creating your docker image locally)
           target: mongo-express:latest
-          format: attest-cyclonedx-json
+          format: statement
 #           format: attest
           scribe-enable: true
           scribe-client-id: ${{ secrets.SCRIBE_PROD_DEMO_CLIENT_ID }}
           scribe-client-secret: ${{ secrets.SCRIBE_PROD_DEMO_CLIENT_SECRET }}
-          product-key: "attest test 1"
+          product-key: "statement"
 
       - uses: actions/upload-artifact@v2
         with:
@@ -66,8 +67,8 @@ jobs:
         uses: scribe-security/action-bom@master
         with:
           target: mongo-express:latest
-#           format: statement-slsa
-          format: attest-slsa
+          format: statement-slsa
+#           format: attest-slsa
           force: true
 
       - uses: actions/upload-artifact@v2
