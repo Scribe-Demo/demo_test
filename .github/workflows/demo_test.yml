@@ -32,7 +32,7 @@ jobs:
         with:
            type: dir
            target: 'mongo-express-scm'
-           format: statement
+#            format: statement
 #            format: attest
 #            scribe-enable: true
 #            scribe-client-id: ${{ secrets.SCRIBE_PROD_DEMO_CLIENT_ID }}
