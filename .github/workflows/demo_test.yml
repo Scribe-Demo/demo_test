@@ -38,8 +38,8 @@ jobs:
 #            scribe-client-id: ${{ secrets.SCRIBE_PROD_DEMO_CLIENT_ID }}
 #            scribe-client-secret: ${{ secrets.SCRIBE_PROD_DEMO_CLIENT_SECRET }}
 #            product-key: "statement1"
-           scribe-client-id: ${{ secrets.SCRIBE_PROD_TEST_CLIENT_ID }}
-           scribe-client-secret: ${{ secrets.SCRIBE_PROD_TEST_CLIENT_SECRET }}
+           scribe-client-id: ${{ secrets.SCRIBE_PROD_DEMO_CLIENT_ID }}
+           scribe-client-secret: ${{ secrets.SCRIBE_PROD_DEMO_CLIENT_SECRET }}
            product-key: "00DEMO test"
 
 
@@ -57,8 +57,8 @@ jobs:
 #           scribe-client-id: ${{ secrets.SCRIBE_PROD_DEMO_CLIENT_ID }}
 #           scribe-client-secret: ${{ secrets.SCRIBE_PROD_DEMO_CLIENT_SECRET }}
 #           product-key: "statement1"
-          scribe-client-id: ${{ secrets.SCRIBE_PROD_TEST_CLIENT_ID }}
-          scribe-client-secret: ${{ secrets.SCRIBE_PROD_TEST_CLIENT_SECRET }}
+          scribe-client-id: ${{ secrets.SCRIBE_PROD_DEMO_CLIENT_ID }}
+          scribe-client-secret: ${{ secrets.SCRIBE_PROD_DEMO_CLIENT_SECRET }}
           product-key: "00DEMO test"
 
       - uses: actions/upload-artifact@v2
