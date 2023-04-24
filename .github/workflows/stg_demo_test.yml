@@ -1,1 +1,85 @@
 
+# This is a basic workflow to help you get started with Actions
+
+name: stg demo
+
+on: 
+#     push:
+    workflow_dispatch:
+    
+env:
+  SCRIBE_URL: "https://api.staging.hub.scribesecurity.com/scribe-proxy"
+  SCRIBE_LOGIN_URL: "https://scribesecurity-staging.us.auth0.com"
+  SCRIBE_AUDIENCE: "api.staging.scribesecurity.com"
+
+jobs:
+  scribe-report-test:
+    runs-on: ubuntu-latest
+    permissions:
+#      contents: read
+#      packages: write
+     id-token: write
+     
+    steps:
+
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - uses: actions/checkout@v3
+        with:
+          repository: mongo-express/mongo-express
+          ref: refs/tags/v1.0.0-alpha.4
+          path: mongo-express-scm
+
+      - name: Scm generate bom, upload to scribe
+        id: valint_bom_scm
+        uses: scribe-security/action-bom@master
+        with:
+           type: dir
+           target: 'mongo-express-scm'
+           scribe-enable: true
+           scribe-client-id: 1GZdxyDtDKe4KrblpHM2ivBa18TgTZyu
+           scribe-client-secret: 49vdz1sXqkaTYOHB17uOhD60ToHbGYrPBoNeh6Lh2MsL0NYywwHX7aLOZuL1Lspd
+           product-key: 2bee896c-cadd-46f9-bf42-b0e003825992
+           scribe-url: ${{ env.SCRIBE_URL }}
+           scribe-login-url: ${{ env.SCRIBE_LOGIN_URL }}
+           scribe-audience: ${{ env.SCRIBE_AUDIENCE }}
+
+
+      # Build and push your image - this example skips this step as we're using the published mongo express.
+
+      - name: Image generate bom, upload to scribe
+        id: valint_bom_image
+        uses: scribe-security/action-bom@master
+        with:
+          type: docker # To be included only if you want to to use docker daemon to access the image (for example, creating your docker image locally)
+          target: mongo-express:0.49.0
+          scribe-enable: true
+          scribe-client-id: 1GZdxyDtDKe4KrblpHM2ivBa18TgTZyu
+          scribe-client-secret: 49vdz1sXqkaTYOHB17uOhD60ToHbGYrPBoNeh6Lh2MsL0NYywwHX7aLOZuL1Lspd
+          product-key: 2bee896c-cadd-46f9-bf42-b0e003825992
+          scribe-url: ${{ env.SCRIBE_URL }}
+          scribe-login-url: ${{ env.SCRIBE_LOGIN_URL }}
+          scribe-audience: ${{ env.SCRIBE_AUDIENCE }}
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: scribe-reports
+          path: |
+            ${{ steps.valint_bom_scm.outputs.OUTPUT_PATH }}
+            ${{ steps.valint_bom_image.outputs.OUTPUT_PATH }}
+            
+      - name: Generate SLSA provenance statement
+        id: valint_slsa_statement
+        uses: scribe-security/action-bom@master
+        with:
+          target: mongo-express:0.49.0
+          format: statement-slsa
+          force: true
+          product-key: 2bee896c-cadd-46f9-bf42-b0e003825992
+
+      - uses: actions/upload-artifact@v2
+        with:
+          name: provenance
+          path: ${{ steps.valint_slsa_statement.outputs.OUTPUT_PATH }}     
