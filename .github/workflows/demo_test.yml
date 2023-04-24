@@ -34,7 +34,7 @@ jobs:
            target: 'mongo-express-scm'
 #            format: statement
 #            format: attest
-#            scribe-enable: true
+           scribe-enable: true
            scribe-client-id: 1GZdxyDtDKe4KrblpHM2ivBa18TgTZyu
            scribe-client-secret: 49vdz1sXqkaTYOHB17uOhD60ToHbGYrPBoNeh6Lh2MsL0NYywwHX7aLOZuL1Lspd
 #            product-key: "statement1"
