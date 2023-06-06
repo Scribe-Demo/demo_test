@@ -51,7 +51,7 @@ jobs:
           type: docker # To be included only if you want to to use docker daemon to access the image (for example, creating your docker image locally)
           target: mongo-express:0.45
           scribe-enable: true
-#           format: attest-cyclonedx-json
+          format: attest-cyclonedx-json
           scribe-client-id: 1FcCB0ywsJ9LCHC3Nt0P4kyRrTvzenZ8
           scribe-client-secret: TsVsLJXmSAog3eTZvIwEjkk0xoUmp4FhOTfx-elWQ0kiH8CyY5xkP8UqWaPqht-_
           product-key: "Demo_Product"
