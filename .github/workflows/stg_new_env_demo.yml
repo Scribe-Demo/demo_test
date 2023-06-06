@@ -41,7 +41,7 @@ jobs:
            scribe-enable: true
            scribe-client-id: 85IIjVsAUBCfAnPaM8tDvEszeyAcGSfU
            scribe-client-secret: uLUD1tqvscazQJWMSSrbg8TJbDgI7sUlowWtNf_x8lXdqfuHW_5n5Z8GzaGN3eth
-           product-key: "Demo Product"
+           product-key: "Demo_Product"
            scribe-url: ${{ env.SCRIBE_URL }}
            scribe-login-url: ${{ env.SCRIBE_LOGIN_URL }}
            scribe-audience: ${{ env.SCRIBE_AUDIENCE }}
@@ -59,7 +59,7 @@ jobs:
 #           format: attest-cyclonedx-json
           scribe-client-id: 85IIjVsAUBCfAnPaM8tDvEszeyAcGSfU
           scribe-client-secret: uLUD1tqvscazQJWMSSrbg8TJbDgI7sUlowWtNf_x8lXdqfuHW_5n5Z8GzaGN3eth
-          product-key: "Demo Product"
+          product-key: "Demo_Product"
           scribe-url: ${{ env.SCRIBE_URL }}
           scribe-login-url: ${{ env.SCRIBE_LOGIN_URL }}
           scribe-audience: ${{ env.SCRIBE_AUDIENCE }}
@@ -78,7 +78,7 @@ jobs:
           target: mongo-express:latest
           format: statement-slsa
           force: true
-          product-key: "Demo Product"
+          product-key: "Demo_Product"
 
       - uses: actions/upload-artifact@v2
         with:
